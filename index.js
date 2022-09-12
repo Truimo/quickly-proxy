@@ -10,6 +10,11 @@ app.use('/bili', createProxyMiddleware({
         "referer": "https://space.bilibili.com/"
     }, pathRewrite: {
         '^/bili': '/',
+    }, onProxyReq: function (proxyReq) {
+        proxyReq.setHeader('origin', 'https://www.bilibili.com/')
+    }, onProxyRes: function (proxyRes) {
+        delete proxyRes.headers['access-control-allow-origin']
+        delete proxyRes.headers['access-control-allow-credentials']
     }
 }))
 

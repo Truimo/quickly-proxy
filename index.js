@@ -43,4 +43,16 @@ app.use('/github-profile-summary-cards', createProxyMiddleware({
     }
 }))
 
+app.use('/notion-api', createProxyMiddleware({
+    target: 'https://api.notion.com', changeOrigin: true, pathRewrite: {
+        '^/notion-api': '/',
+    }
+}))
+
+app.use('/notion-icons', createProxyMiddleware({
+    target: 'https://www.notion.so/icons', changeOrigin: true, pathRewrite: {
+        '^/notion-icons': '/',
+    }
+}))
+
 app.listen(3000)
